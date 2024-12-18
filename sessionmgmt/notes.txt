@@ -1,0 +1,2 @@
+1. Code structure will look similar to machine microservice
+2. Changes will be required to model and dl layer accordingly.

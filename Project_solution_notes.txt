@@ -1,0 +1,16 @@
+Hello Eyas & team,
+
+1. I have tried to implement machine microservice and it is compiling successfully.
+2. Other 2 services, we can make a code copy of machine microservice code.
+    2.1 Here some modifications will be required.
+3. Wherever necessary, I have done mocking of data.
+
+
+------------------------------------------------------------------------------------------
+Architecture
+------------------------------------------------------------------------------------------
+1. Right now in memory map is used to save data as part of DBMS
+2. Service will start running on port 8080
+3. Business and data logic layers are kept loosely coupled intentionally.
+    3.1 In case we choose to migrate to AWS timestream/InfluxDB or DynamoDB, only DL layer will have major code impact.
+    3.2 It will also help in unit and component test as well.

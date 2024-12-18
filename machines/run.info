@@ -1,0 +1,73 @@
+How to compile ?
+
+1. Extract given zip
+2. Keep machine at go/src folder level
+e.g.
+cd /Users/sacchidanand.bhavari/go/src/machines
+
+#In docker or on VM, we can run using go run command
+go run main.go
+
+----------------------------------------------------------------------
+Sample Execution / Dry run
+----------------------------------------------------------------------
+(base) sacchidanand.bhavari@DDSPL1463 machines % go run cmd/main.go     
+Starting the machine config service
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:   export GIN_MODE=release
+ - using code:  gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /machine-feeds/:machineid --> machines/configserver/handlers.ListMachineFeeds (3 handlers)
+[GIN-debug] POST   /machine-feeds            --> machines/configserver/handlers.CreateMachineFeed (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2024/12/18 - 17:29:32 | 200 |     506.833µs |             ::1 | GET      "/machine-feeds/10002"
+[GIN] 2024/12/18 - 17:29:45 | 200 |      36.666µs |             ::1 | GET      "/machine-feeds/100010"
+[GIN] 2024/12/18 - 17:29:54 | 404 |       1.125µs |             ::1 | GET      "/machine-feeds/"
+[GIN] 2024/12/18 - 17:30:00 | 404 |       1.041µs |             ::1 | GET      "/machine-feed"
+[GIN] 2024/12/18 - 17:30:33 | 200 |    1.853125ms |             ::1 | GET      "/machine-feeds/10002"
+[GIN] 2024/12/18 - 17:32:53 | 200 |      94.042µs |             ::1 | GET      "/machine-feeds/10002"
+
+----------------------------------------------------------------------
+#Output on postman
+----------------------------------------------------------------------
+Content-Type
+application/json; charset=utf-8
+Date
+Wed, 18 Dec 2024 12:00:33 GMT
+Content-Length
+312
+
+[
+    {
+        "id": 10001,
+        "feedType": 1,
+        "created_at": 1734523233,
+        "data": {
+            "additional_info": {
+                "mechanic": "John Doe",
+                "status": "Completed"
+            },
+            "cost": 500,
+            "parts_replaced": [
+                "engine",
+                "piston"
+            ],
+            "repair_type": "engine"
+        }
+    },
+    {
+        "id": 10002,
+        "feedType": 2,
+        "created_at": 1734523233,
+        "data": {
+            "session_type": "pump",
+            "temp": "50C",
+            "vibration_per_min": 200
+        }
+    }
+]
+----------------------------------------------------------------------
